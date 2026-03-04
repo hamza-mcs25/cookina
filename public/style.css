@@ -1,322 +1,1302 @@
-/* -------------------- GLOBAL -------------------- */
-body {
-  margin:0;
-  padding:0;
-  background:#FFF6F1;
-  font-family:"Comic Sans MS","Patrick Hand",cursive;
-  overflow-x:hidden;
-  color:#3a2e2e;
+/* ============================================================
+   COOKINA — Redesigned CSS
+   Aesthetic: Warm Editorial · Organic · Handcrafted
+   Fonts: Playfair Display (headings) + DM Sans (body)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* -------------------- CSS VARIABLES -------------------- */
+:root {
+  --cream:       #FAF4EC;
+  --cream-dark:  #F0E6D3;
+  --rust:        #C94A2A;
+  --rust-light:  #E8603F;
+  --rust-pale:   #F5D5C8;
+  --brown:       #3D2314;
+  --brown-mid:   #7A4A30;
+  --brown-light: #B07050;
+  --sage:        #8A9E80;
+  --sage-light:  #C8D8C0;
+  --white:       #FFFDF8;
+  --shadow-sm:   0 2px 12px rgba(61,35,20,0.08);
+  --shadow-md:   0 8px 32px rgba(61,35,20,0.12);
+  --shadow-lg:   0 20px 60px rgba(61,35,20,0.16);
+  --radius-sm:   10px;
+  --radius-md:   20px;
+  --radius-lg:   36px;
+  --radius-pill: 999px;
 }
-* { transition:0.3s ease; }
+
+/* -------------------- RESET / GLOBAL -------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--brown);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* Subtle static grain — PNG-based, no SVG filter (no repaint cost) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4t5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92ZxD3Aw8+fNh8GqmfulnFBDDMxMEMOIkLVNIBACkRkLkQAkEBAAkoCgAEAQAAIAAAAEgCAAYAgAAQQQEAAAgAAAAABAAEAAAIAAAAABAAEAAACAAAAAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  will-change: auto;
+}
+
+/* -------------------- TOP NAVIGATION IMAGE -------------------- */
+.top-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.top-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
 /* -------------------- HERO -------------------- */
-.top-image {
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:auto;
-  z-index:1000;
-  overflow:hidden;
-}
-.top-image img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
 .hero {
-  min-height:100vh;
-  width:100%;
-  position:relative;
-  text-align:center;
-  overflow:hidden;
-  z-index:5;
-  margin-top:0;
-}
-.logo {
-  font-size:5rem;
-  color:#FF7A6E;
-  font-weight:bold;
-  letter-spacing:2px;
-  z-index:10;
-  position:relative;
-  text-align:center;
-  margin-top:1px;
-  transform-origin:bottom center;
-}
-.floating-items {
-  position:fixed;
-  left:0;
-  width:100vw;
-  pointer-events:none;
-  z-index:1;
-}
-.float {
-  position:absolute;
-  width:90px;
-  opacity:0.85;
-}
-.down-hint {
-  position:absolute;
-  bottom:40px;
-  width:100%;
-  font-size:2rem;
-  color:#8F6E66;
-  opacity:0.6;
-  z-index:5;
-}
-
-/* -------------------- SECOND WINDOW -------------------- */
-.second-window {
-  padding-top:100px;
-  min-height:100vh;
-  position:relative;
-}
-
-.food-cards-horizontal {
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  padding:0 20px;
-  margin-bottom:20px;
-}
-.food-card {
-  flex:none;
-  background:#FF7A6E;
-  color:white;
-  font-size:2rem;
-  font-weight:bold;
-  padding:20px 30px;
-  border-radius:15px;
-  opacity:0;
-  cursor:pointer;
-  user-select:none;
-}
-.food-card.show {
-  opacity:1;
-  transition:opacity 0.6s ease;
-}
-
-.search-box {
-  display:flex;
-  justify-content:flex-end;
-  gap:15px;
-  background:white;
-  padding:15px 20px;
-  border-radius:20px;
-  box-shadow:0px 5px 20px rgba(0,0,0,0.06);
-  max-width:500px;
-  height:50px;
-  margin:0 auto 30px auto;
-}
-.search-box input {
-  border:none;
-  outline:none;
-  font-size:1.2rem;
-  width:200px;
-  background:none;
-}
-.search-box button {
-  background:#FF7A6E;
-  color:white;
-  border:none;
-  padding:12px 18px;
-  border-radius:15px;
-  cursor:pointer;
-  font-size:1rem;
-  font-weight:bold;
-}
-.search-box button:hover {
-  background:#ff5d54;
-}
-
-.illustration-flashcard {
-  width:90%;
-  height:1000px;
-  margin:0 auto 50px auto;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 8px 25px rgba(0,0,0,0.1);
-}
-.illustration-flashcard img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition: opacity 1s ease;
-}
-
-/* -------------------- RECIPE SECTION -------------------- */
-/* ================= RECIPE SECTION ================= */
-
-.recipe-section {
-  padding-top: 380px;               /* clears hero image */
-  padding-bottom: 120px;
-  background: #FFF6F3;
   min-height: 100vh;
-  z-index: 30;
-
-}
-
-/* BIGGER recipe card */
-.recipe-card {
-  background: #FFFFFF;
-
-  width: 90%;                     /* takes most of screen width */
-  max-width: 1200px;              /* ⬅ bigger than before */
-  min-width: 600px;               /* ensures it doesn't shrink too much */
-  height: 70%;                   /* allow content to determine height */
-  min-height: 70vh;               /* still at least 80% of viewport height */
-  
-  margin: 20px auto;
-  padding: 40px;                  /* more padding for spacious feel */
-  border-radius: 28px;
-  box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
-
+  width: 100%;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  animation: fadeInUp 0.8s ease forwards;
-
-  font-size: 30px;                /* larger font for recipe text */
-  line-height: 1.7;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-/* Scroll happens INSIDE recipe */
-#recipeSteps {
-  margin-top: 20px;
-  padding-left: 22px;
-  font-size: 1.8rem;
-  line-height: 1.6rem;
-  overflow-y: auto;                 /* ✅ INTERNAL SCROLL */
-  flex: 1;                          /* fills remaining space */
+/* Big display title */
+.logo {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(5rem, 12vw, 10rem);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -2px;
+  color: var(--rust);
+  position: relative;
+  z-index: 10;
+  line-height: 1;
+  /* subtle text shadow for depth */
+  text-shadow:
+    3px 3px 0 var(--rust-pale),
+    6px 6px 0 rgba(201,74,42,0.10);
+  /* animation on load */
+  animation: logoReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Individual steps */
-#recipeSteps li {
-  margin: 14px 0;
-  color: #574745;
-}
-
-/* Hide section when not used */
-.hidden {
-  display: none;
-}
-
-/* Animation */
-@keyframes fadeInUp {
+@keyframes logoReveal {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px) skewY(2deg);
+    filter: blur(6px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) skewY(0deg);
+    filter: blur(0);
   }
 }
 
-
-.back-btn {
-  background: #FF7A6E;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 12px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-.back-btn:hover {
-  background: #ff5d54;
+/* Floating food items */
+.floating-items {
+  position: fixed;
+  left: 0;
+  width: 100vw;
+  pointer-events: none;
+  z-index: 1;
+  will-change: opacity;        /* only opacity changes on scroll */
 }
 
-
-/* -------------------- PLANNER SECTION (ADDED ONLY) -------------------- */
-.planner-section {
-  height:200vh;
-  padding:120px 60px;
-  background:#FFF6F1;
+.float {
+  position: absolute;
+  width: 100px;
+  opacity: 0.72;
+  /* GPU layer per element so GSAP transforms don't trigger repaints */
+  will-change: transform;
+  transform: translateZ(0);
+  filter: drop-shadow(0 3px 8px rgba(61,35,20,0.12));
 }
 
-.planner-title {
-  text-align:center;
-  font-size:4.5em;
-  color:#FF7A6E;
-  margin-bottom:60px;
+/* Scroll hint */
+.down-hint {
+  position: absolute;
+  bottom: 48px;
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  opacity: 0.7;
+  z-index: 5;
+  animation: bounce 2.4s ease-in-out infinite;
 }
 
-.planner-grid {
-  display:flex;
-  gap:30px;
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
 }
 
-.planner-column {
-  flex:1;
-  background:#FFFFFF;
-  border-radius:25px;
-  padding:25px;
-  box-shadow:0px 8px 25px rgba(0,0,0,0.08);
+/* -------------------- SECOND WINDOW (SEARCH AREA) -------------------- */
+.second-window {
+  position: relative;
+  min-height: 100vh;
+  padding: 120px 40px 80px;
+  background: var(--cream);
 }
 
-.planner-column h3 {
-  font-size:2.5rem;
-  color:#8F6E66;
-  margin-bottom:10px;
+/* Decorative horizontal rule above search */
+.second-window::before {
+  content: '✦  find your recipe  ✦';
+  display: block;
   text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  margin-bottom: 48px;
+  opacity: 0.6;
 }
 
-.add-btn {
-  background:#FF7A6E;
-  color:white;
-  border:none;
-  padding:12px 20px 12px 20px;;
-  border-radius:15px;
-  font-size:2rem;
-  font-weight:bold;
-  cursor:pointer;
-  margin: 0 auto 15px auto; /* centers horizontally */
-  width: 250px;
-  display: block; /* necessary for margin auto to work */
-}
-.add-btn:hover {
-  background:#ff5d54;
+/* -------------------- FOOD CATEGORY CARDS -------------------- */
+.food-cards-horizontal {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
 }
 
+.food-card {
+  background: var(--white);
+  color: var(--brown);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 14px 26px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--cream-dark);
+  opacity: 0;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 1;               /* stacking context for this card */
+  overflow: hidden;
+  transition: color 0.25s ease, border-color 0.25s ease,
+              transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+}
+
+/* Hover fill — sits BEHIND the text */
+.food-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--rust);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s ease;
+  z-index: -1;              /* behind card text, not above it */
+  border-radius: inherit;
+}
+
+.food-card:hover::before  { transform: scaleX(1); }
+.food-card:hover {
+  color: var(--white);
+  border-color: var(--rust);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.food-card.show {
+  opacity: 1;
+  animation: cardPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes cardPop {
+  from { opacity: 0; transform: scale(0.85) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* -------------------- SEARCH BOX -------------------- */
+.search-box {
+  display: flex;
+  align-items: stretch;      /* children fill full height evenly */
+  background: var(--white);
+  border: 2px solid var(--cream-dark);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+  max-width: 520px;
+  height: 56px;              /* fixed height so pill looks correct */
+  margin: 0 auto 40px auto;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-box:focus-within {
+  border-color: var(--rust);
+  box-shadow: 0 0 0 4px rgba(201,74,42,0.10), var(--shadow-md);
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--brown);
+  background: transparent;
+  padding: 0 16px 0 28px;     /* left padding clears the pill curve */
+  min-width: 0;
+  width: 0;                   /* forces flex to control width, not content */
+}
+
+.search-box input::placeholder {
+  color: var(--brown-light);
+  opacity: 0.55;
+}
+
+.search-box button {
+  background: var(--rust);
+  color: var(--white);
+  border: none;
+  padding: 0 28px;           /* vertical padding removed — height handles it */
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+}
+
+.search-box button:hover {
+  background: var(--rust-light);
+}
+
+/* Feedback text */
+.search-feedback {
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--brown-light);
+  min-height: 24px;
+  margin-bottom: 16px;
+}
+
+/* -------------------- FLASHCARD IMAGE → see FLASHCARD DECK below -------------------- */
+
+/* -------------------- RECIPE SECTION -------------------- */
+.recipe-section {
+  position: relative;
+  padding: clamp(100px, 20vw, 380px) 40px 120px; /* responsive top padding */
+  background: var(--cream-dark);
+  min-height: 100vh;
+  z-index: 30;
+}
+
+/* Decorative label */
+.recipe-section::before {
+  content: '✦  your recipe  ✦';
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  margin-bottom: 24px;
+  opacity: 0.6;
+}
+
+/* Back button */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--rust);
+  border: 2px solid var(--rust);
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  margin-bottom: 32px;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.back-btn:hover {
+  background: var(--rust);
+  color: var(--white);
+  transform: translateX(-4px);
+}
+
+/* Recipe card */
+.recipe-card {
+  background: var(--white);
+  width: min(92%, 960px);
+  min-height: 60vh;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 56px);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,0.8);
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Recipe list */
+#recipeSteps {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+/* Bold headers inside recipe */
+#recipeSteps li[style*="bold"] {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--rust);
+  margin-top: 28px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px dashed var(--rust-pale);
+}
+
+/* Individual step items */
+#recipeSteps li {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--brown);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+#recipeSteps li:last-child {
+  border-bottom: none;
+}
+
+/* Numbered steps */
+.recipe-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 0 !important;
+}
+
+.hidden { display: none !important; }
+
+/* ============================================================
+   PLANNER SECTION — Chalkboard Kitchen aesthetic
+   Dark slate background, three note-card columns,
+   each with its own accent colour.
+   ============================================================ */
+
+/* Colour tokens just for the planner */
+:root {
+  --pl-bg:        #1E2329;          /* deep slate */
+  --pl-card-made: #252D25;          /* dark forest */
+  --pl-card-todo: #2B2718;          /* dark amber  */
+  --pl-card-buy:  #2A2025;          /* dark rose   */
+  --pl-accent-made: #6DBF8A;        /* sage green  */
+  --pl-accent-todo: #E8B84B;        /* warm amber  */
+  --pl-accent-buy:  #D98CA0;        /* dusty rose  */
+  --pl-text:      #EDE8DF;          /* warm white  */
+  --pl-muted:     rgba(237,232,223,0.35);
+  --pl-line:      rgba(237,232,223,0.08);
+}
+
+/* ── Section wrapper ── */
+.planner-section {
+  padding: 100px 40px 140px;
+  background: var(--pl-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Faint ruled-line texture across the whole section */
+.planner-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent,
+    transparent 39px,
+    var(--pl-line) 39px,
+    var(--pl-line) 40px
+  );
+  pointer-events: none;
+}
+
+/* ── Title ── */
+.planner-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--pl-text);
+  text-align: center;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+  position: relative;
+}
+
+/* Subtitle line under the title */
+.planner-title::after {
+  content: 'track what you cooked · plan what's next · shop smarter';
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pl-muted);
+  font-style: normal;
+  margin-top: 10px;
+}
+
+/* ── Three-column grid ── */
+.planner-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 56px auto 0;
+  position: relative;
+}
+
+/* ── Each column card ── */
+.planner-column {
+  border-radius: 4px 4px 16px 16px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.3s ease;
+}
+.planner-column:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 36px 80px rgba(0,0,0,0.55);
+}
+
+/* Colour-coded top bar */
+.planner-column:nth-child(1) { background: var(--pl-card-made); }
+.planner-column:nth-child(2) { background: var(--pl-card-todo); }
+.planner-column:nth-child(3) { background: var(--pl-card-buy);  }
+
+.planner-column:nth-child(1)::before,
+.planner-column:nth-child(2)::before,
+.planner-column:nth-child(3)::before {
+  content: '';
+  display: block;
+  height: 5px;
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+}
+.planner-column:nth-child(1)::before { background: var(--pl-accent-made); }
+.planner-column:nth-child(2)::before { background: var(--pl-accent-todo); }
+.planner-column:nth-child(3)::before { background: var(--pl-accent-buy);  }
+
+/* ── Column header ── */
+.planner-column h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 22px 24px 18px;
+  border-bottom: 1px solid var(--pl-line);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.planner-column:nth-child(1) h3 { color: var(--pl-accent-made); }
+.planner-column:nth-child(2) h3 { color: var(--pl-accent-todo); }
+.planner-column:nth-child(3) h3 { color: var(--pl-accent-buy);  }
+
+/* ── List area ── */
 .planner-list {
-  list-style:none;
-  padding:0;
-
+  list-style: none;
+  padding: 14px 16px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 140px;
 }
 
-.planner-list li {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:#FFF6F3;
-  padding:10px 14px;
-  border-radius:15px;
-  margin-bottom:10px;
+/* ── Each item row ── */
+.planner-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--pl-line);
+  transition: background 0.2s ease;
+  animation: itemSlideIn 0.28s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.planner-item:hover {
+  background: rgba(255,255,255,0.08);
 }
 
+@keyframes itemSlideIn {
+  from { opacity:0; transform: translateX(-10px) scale(0.96); }
+  to   { opacity:1; transform: translateX(0)    scale(1);    }
+}
+
+/* ── Checkbox dot ── */
+.planner-check {
+  flex-shrink: 0;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--pl-muted);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.planner-column:nth-child(1) .planner-check:hover { border-color: var(--pl-accent-made); }
+.planner-column:nth-child(2) .planner-check:hover { border-color: var(--pl-accent-todo); }
+.planner-column:nth-child(3) .planner-check:hover { border-color: var(--pl-accent-buy);  }
+
+.planner-column:nth-child(1) .planner-check.checked { background: var(--pl-accent-made); border-color: var(--pl-accent-made); }
+.planner-column:nth-child(2) .planner-check.checked { background: var(--pl-accent-todo); border-color: var(--pl-accent-todo); }
+.planner-column:nth-child(3) .planner-check.checked { background: var(--pl-accent-buy);  border-color: var(--pl-accent-buy);  }
+
+.planner-check.checked::after {
+  content: '✓';
+  color: #1E2329;
+  font-size: 0.6rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* ── Item text input ── */
 .planner-list input {
-  border:none;
-  background:none;
-  outline:none;
-  width:100%;
-  font-size:2rem;
-  font-family:inherit;
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  color: var(--pl-text);
+  min-width: 0;
+  transition: opacity 0.25s;
+}
+.planner-list input::placeholder {
+  color: var(--pl-muted);
+  font-style: italic;
+}
+.planner-list input.done {
+  text-decoration: line-through;
+  opacity: 0.35;
 }
 
+/* ── Delete × button ── */
 .delete-btn {
-  cursor:pointer;
-  color:#FF7A6E;
-  font-weight:bold;
-  padding-left:10px;
+  flex-shrink: 0;
+  cursor: pointer;
+  color: var(--pl-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.18s ease;
+  opacity: 0;
+}
+.planner-item:hover .delete-btn { opacity: 1; }
+.delete-btn:hover {
+  background: rgba(201,74,42,0.3);
+  color: #ff8070;
 }
 
+/* ── Add button at bottom of each column ── */
+.add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: calc(100% - 32px);
+  margin: 4px 16px 16px;
+  background: transparent;
+  border: 1px dashed var(--pl-line);
+  border-radius: 8px;
+  padding: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.planner-column:nth-child(1) .add-btn { color: var(--pl-accent-made); }
+.planner-column:nth-child(2) .add-btn { color: var(--pl-accent-todo); }
+.planner-column:nth-child(3) .add-btn { color: var(--pl-accent-buy);  }
+
+.planner-column:nth-child(1) .add-btn:hover { background: rgba(109,191,138,0.08); border-color: var(--pl-accent-made); }
+.planner-column:nth-child(2) .add-btn:hover { background: rgba(232,184, 75,0.08); border-color: var(--pl-accent-todo); }
+.planner-column:nth-child(3) .add-btn:hover { background: rgba(217,140,160,0.08); border-color: var(--pl-accent-buy);  }
+
+/* -------------------- FOOTER -------------------- */
 .project-footer {
-  margin-top:80px;
-  text-align:center;
-  font-size:0.9rem;
-  color:#8F6E66;
-  opacity:0.7;
+  background: var(--brown);
+  color: var(--cream-dark);
+  text-align: center;
+  padding: 32px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  opacity: 0.95;
+}
+
+/* -------------------- SCROLLBAR STYLING -------------------- */
+::-webkit-scrollbar              { width: 6px; }
+::-webkit-scrollbar-track        { background: var(--cream); }
+::-webkit-scrollbar-thumb        { background: var(--rust-pale); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover  { background: var(--rust); }
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 768px) {
+  .food-cards-horizontal { gap: 10px; }
+  .food-card             { font-size: 0.85rem; padding: 12px 18px; }
+  .planner-grid          { grid-template-columns: 1fr; gap: 16px; }
+  .planner-section       { padding: 80px 16px 100px; }
+  .second-window         { padding: 100px 20px 60px; }
+  .recipe-section        { padding: 120px 20px 80px; }
+  .planner-section       { padding: 80px 20px 100px; }
+  .recipe-card           { padding: 24px 20px; }
+}
+
+/* ============================================================
+   NEW SECTIONS — Recipe Card, Flashcard Deck, Picker, Toast
+   ============================================================ */
+
+/* -------------------- RESULT PICKER -------------------- */
+.picker-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.picker-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  background: var(--white);
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.picker-btn:hover {
+  border-color: var(--rust);
+  background: var(--rust-pale);
+  transform: translateX(4px);
+}
+.picker-name   { flex: 1; font-size: 0.95rem; font-weight: 600; color: var(--brown); }
+.picker-rating { font-size: 0.82rem; color: #c0892a; font-weight: 600; }
+.picker-time   { font-size: 0.82rem; color: var(--brown-light); }
+
+/* -------------------- RECIPE CARD INTERNALS -------------------- */
+.recipe-hero-img {
+  list-style: none;
+  width: 100%;
+  max-height: 320px;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  margin-bottom: 4px;
+}
+.recipe-hero-img img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+.recipe-title-item {
+  list-style: none;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--brown);
+  padding: 16px 0 8px;
+  line-height: 1.2;
+}
+
+.recipe-meta-row {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0 12px;
+}
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  background: var(--cream-dark);
+  color: var(--brown);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.meta-chip--rating {
+  background: #FFF0CC;
+  color: #a06b00;
+  font-weight: 700;
+}
+
+.recipe-cuisine-tag {
+  list-style: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--brown-light);
+  padding: 0 0 16px;
+}
+.recipe-cuisine-tag .sep { opacity: 0.4; }
+
+.recipe-section-header {
+  list-style: none;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--rust);
+  padding: 20px 0 10px;
+  border-bottom: 1.5px dashed var(--rust-pale);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ingredients-grid {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 0 4px;
+}
+.ingredient-chip {
+  background: var(--sage-light);
+  color: var(--brown);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  line-height: 1.3;
+}
+
+.recipe-step {
+  list-style: none !important;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--cream-dark);
+}
+.recipe-step:last-of-type { border-bottom: none; }
+.step-num {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  background: var(--rust);
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-top: 2px;
+}
+.step-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.97rem;
+  line-height: 1.7;
+  color: var(--brown);
+}
+
+.nutrition-row {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 0;
+}
+.nut-chip {
+  background: var(--cream-dark);
+  color: var(--brown-mid);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.recipe-source {
+  list-style: none;
+  padding: 20px 0 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+}
+.recipe-source a {
+  color: var(--rust);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px dashed var(--rust-pale);
+  transition: color 0.2s;
+}
+.recipe-source a:hover { color: var(--rust-light); }
+
+/* ============================================================
+   FLASHCARD DECK — Stacked card system
+   Concept: physical card stack with peek, full-bleed imagery,
+   slide transitions, info overlay on front, details on back.
+   ============================================================ */
+
+.illustration-flashcard {
+  width: min(92%, 1000px);
+  height: clamp(460px, 52vw, 680px);
+  margin: 0 auto 80px;
+  position: relative;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* ── Outer deck wrapper ── */
+.fc-deck {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Stack peek shadows (pure CSS, no extra elements) ── */
+.fc-stack {
+  position: relative;
+  width: 100%;
+  flex: 1;
+}
+
+/* Ghost cards behind — peek effect */
+.fc-stack::before,
+.fc-stack::after {
+  content: '';
+  position: absolute;
+  border-radius: var(--radius-lg);
+  background: var(--cream-dark);
+  left: 50%; top: 0;
+}
+.fc-stack::after {
+  width: calc(100% - 48px);
+  height: 100%;
+  transform: translateX(-50%) translateY(12px) rotate(2.5deg);
+  background: #E8D9C8;
+  z-index: 0;
+  box-shadow: var(--shadow-md);
+}
+.fc-stack::before {
+  width: calc(100% - 80px);
+  height: 100%;
+  transform: translateX(-50%) translateY(22px) rotate(-1.5deg);
+  background: #DDD0BC;
+  z-index: -1;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Active flip card ── */
+.fc-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 4px 8px rgba(61,35,20,0.06),
+    0 16px 40px rgba(61,35,20,0.18),
+    0 40px 80px rgba(61,35,20,0.12);
+}
+.fc-card.flipped { transform: rotateY(180deg); }
+
+/* Slide-transition class added by JS */
+.fc-card.sliding-out {
+  transition: transform 0.22s ease-in, opacity 0.22s ease-in;
+  transform: translateX(-60px) scale(0.95);
+  opacity: 0;
+}
+.fc-card.sliding-in {
+  transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.28s ease-out;
+  transform: translateX(0) scale(1);
+  opacity: 1;
+}
+
+/* ── Front & Back shared ── */
+.fc-front, .fc-back {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+/* ── FRONT — full-bleed image with gradient overlay ── */
+.fc-front { background: var(--brown); }
+
+.fc-front img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+  transform-origin: center;
+}
+.fc-card:not(.flipped):hover .fc-front img { transform: scale(1.04); }
+
+/* Dark gradient for readability */
+.fc-front::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(30,15,5,0.05) 30%,
+    rgba(30,15,5,0.65) 100%
+  );
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+}
+
+/* Bottom-left info on the front */
+.fc-front-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 28px 32px;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.fc-front-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+  font-weight: 700;
+  font-style: italic;
+  color: #FFFDF8;
+  line-height: 1.2;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  max-width: 60%;
+}
+
+.fc-front-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.fc-badge-rating {
+  background: rgba(255,253,248,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,253,248,0.25);
+  color: #FFE49A;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.fc-badge-time {
+  background: rgba(255,253,248,0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,253,248,0.2);
+  color: rgba(255,253,248,0.85);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+/* "Tap to flip" pill — top right */
+.fc-front-label {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: rgba(255,253,248,0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,253,248,0.2);
+  color: rgba(255,253,248,0.9);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.fc-card.flipped .fc-front-label { opacity: 0; }
+
+/* ── BACK — clean info card ── */
+.fc-back {
+  transform: rotateY(180deg);
+  background: var(--white);
+  display: flex;
+  align-items: stretch;
+}
+
+.fc-back-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(28px, 5vw, 56px);
+  gap: 0;
+}
+
+/* Decorative number */
+.fc-back-num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--cream-dark);
+  line-height: 1;
+  margin-bottom: -8px;
+  user-select: none;
+}
+
+.fc-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--brown);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.fc-cuisine {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  margin-bottom: 24px;
+}
+
+/* Divider */
+.fc-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--rust-pale);
+  border-radius: 1px;
+  margin: 0 auto 24px;
+}
+
+.fc-meta {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.fc-meta-chip {
+  background: var(--cream-dark);
+  color: var(--brown);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+}
+.fc-meta-chip.gold {
+  background: #FFF3D0;
+  color: #8A6000;
+  font-weight: 700;
+}
+
+.fc-try-btn {
+  background: var(--rust);
+  color: var(--white);
+  border: none;
+  padding: 13px 32px;
+  border-radius: var(--radius-pill);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.fc-try-btn:hover {
+  background: var(--rust-light);
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* ── Controls ── */
+.fc-controls {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 24px;
+  background: var(--white);
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  padding: 4px;
+}
+
+.fc-nav {
+  background: transparent;
+  border: none;
+  color: var(--brown);
+  width: 40px; height: 40px;
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+.fc-nav:hover {
+  background: var(--rust);
+  color: var(--white);
+}
+
+.fc-counter {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--brown-light);
+  padding: 0 20px;
+  border-left: 1px solid var(--cream-dark);
+  border-right: 1px solid var(--cream-dark);
+  height: 40px;
+  display: flex; align-items: center;
+  white-space: nowrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .fc-front-title   { font-size: 1rem; max-width: 55%; }
+  .fc-front-info    { padding: 18px 20px; }
+  .fc-back-content  { padding: 24px 18px; }
+  .fc-title         { font-size: 1.3rem; }
+  .fc-back-num      { font-size: 3rem; }
+  .fc-stack::after  { display: none; }
+  .fc-stack::before { display: none; }
+}
+
+/* -------------------- TOAST NOTIFICATION -------------------- */
+#cookina-toast {
+  position: fixed;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--brown);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 12px 28px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-lg);
+  z-index: 99999;
+  transition: bottom 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+  pointer-events: none;
+}
+#cookina-toast.toast-show { bottom: 32px; }
+
+/* -------------------- RESPONSIVE ADDITIONS -------------------- */
+@media (max-width: 600px) {
+  .fc-back { padding: 24px 20px; }
+  .fc-title { font-size: 1.3rem; }
+  .recipe-hero-img img { height: 200px; }
+  .ingredients-grid { gap: 6px; }
 }

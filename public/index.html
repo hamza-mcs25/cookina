@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cocina</title>
+  <title>Cookina</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
     <img src="/images/nav.png" alt="Top Banner">
   </header>
   <section class="hero">
-    <h1 class="logo">Cocina</h1>
+    <h1 class="logo">Cookina</h1>
     <div class="floating-items"></div>
     <div class="down-hint">scroll ↓</div>
   </section>
@@ -27,8 +27,8 @@
       <div class="food-card" data-dish="Cake">🍰 Desserts</div>
     </div>
     <div class="search-box">
-      <input id="dishInput" placeholder="Type a dish...">
-      <button onclick="searchDish()">Find Recipe</button>
+      <input id="dishInput" placeholder="Type a dish..." aria-label="Dish name" autocomplete="off">
+      <button id="searchBtn" type="button" onclick="searchDish()">Find Recipe</button>
     </div>
     <div id="searchFeedback" class="search-feedback"></div>
     <div id="recipeResults" class="recipe-results"></div>
@@ -40,12 +40,13 @@
   <section class="recipe-section hidden">
     <button id="backToSearch" class="back-btn">← Back</button>
     <div class="recipe-card">
+      <h2 id="recipeTitle" class="recipe-title"></h2>
       <ul id="recipeSteps"></ul>
     </div>
   </section>
 
   <section class="planner-section">
-    <h2 class="planner-title">🍓 My Cocina Planner</h2>
+    <h2 class="planner-title">🍓 My Cookina Planner</h2>
     <div class="planner-grid">
       <div class="planner-column">
         <h3>🍳 Already Made Recipes</h3>
@@ -67,7 +68,7 @@
 </main>
 
 <footer class="project-footer">
-  © 2025 Cocina — Web Technologies Project. All rights reserved.
+  © 2025 Cookina — Web Technologies Project. All rights reserved.
 </footer>
 
 <script src="script.js" defer></script>
