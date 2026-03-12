@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF8F0"/>
+      <stop offset="100%" stop-color="#FFE8CC"/>
+    </radialGradient>
+    <radialGradient id="plateGrad" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F5EDE0"/>
+    </radialGradient>
+    <radialGradient id="steamGrad" cx="50%" cy="0%" r="100%">
+      <stop offset="0%" stop-color="#FF6B35" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FF6B35" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#C0580020"/>
+    </filter>
+    <filter id="softShadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00000015"/>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="200" cy="200" r="190" fill="url(#bgGrad)"/>
+  <circle cx="200" cy="200" r="190" fill="none" stroke="#FF6B35" stroke-width="3" opacity="0.3"/>
+  <circle cx="200" cy="200" r="182" fill="none" stroke="#FF6B35" stroke-width="1" opacity="0.15"/>
+
+  <!-- Decorative dots ring -->
+  <g opacity="0.25">
+    <circle cx="200" cy="18" r="3" fill="#FF6B35"/>
+    <circle cx="270" cy="35" r="2.5" fill="#FF6B35"/>
+    <circle cx="330" cy="80" r="2.5" fill="#FF6B35"/>
+    <circle cx="368" cy="145" r="3" fill="#FF6B35"/>
+    <circle cx="382" cy="220" r="2.5" fill="#FF6B35"/>
+    <circle cx="360" cy="295" r="2.5" fill="#FF6B35"/>
+    <circle cx="318" cy="352" r="3" fill="#FF6B35"/>
+    <circle cx="248" cy="382" r="2.5" fill="#FF6B35"/>
+    <circle cx="168" cy="382" r="2.5" fill="#FF6B35"/>
+    <circle cx="98" cy="352" r="3" fill="#FF6B35"/>
+    <circle cx="48" cy="295" r="2.5" fill="#FF6B35"/>
+    <circle cx="22" cy="220" r="2.5" fill="#FF6B35"/>
+    <circle cx="36" cy="145" r="3" fill="#FF6B35"/>
+    <circle cx="75" cy="80" r="2.5" fill="#FF6B35"/>
+    <circle cx="135" cy="35" r="2.5" fill="#FF6B35"/>
+  </g>
+
+  <!-- Steam wisps above bowl -->
+  <g opacity="0.55">
+    <path d="M160 148 Q155 135 162 122 Q169 109 163 96" fill="none" stroke="#FF6B35" stroke-width="3" stroke-linecap="round"/>
+    <path d="M200 142 Q195 128 202 114 Q209 100 203 87" fill="none" stroke="#FF9A62" stroke-width="3" stroke-linecap="round"/>
+    <path d="M240 148 Q235 135 242 122 Q249 109 243 96" fill="none" stroke="#FF6B35" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Bowl / plate -->
+  <ellipse cx="200" cy="230" rx="105" ry="18" fill="#E8D5BE" filter="url(#softShadow)"/>
+  <path d="M100 210 Q100 285 200 285 Q300 285 300 210 Z" fill="url(#plateGrad)" filter="url(#shadow)"/>
+  <path d="M100 210 Q200 225 300 210" fill="none" stroke="#E8D5BE" stroke-width="2"/>
+
+  <!-- Bowl rim highlight -->
+  <ellipse cx="200" cy="210" rx="100" ry="16" fill="#FFFFFF" opacity="0.5"/>
+  <ellipse cx="200" cy="210" rx="100" ry="16" fill="none" stroke="#D4B896" stroke-width="2"/>
+
+  <!-- Food in bowl - noodles/pasta swirl -->
+  <g clip-path="url(#bowlClip)">
+    <path d="M145 230 Q160 220 175 230 Q190 240 205 228 Q220 216 235 228 Q250 240 260 230" fill="none" stroke="#F4A261" stroke-width="5" stroke-linecap="round"/>
+    <path d="M140 242 Q158 232 172 242 Q186 252 202 240 Q218 228 232 240 Q246 252 262 242" fill="none" stroke="#E76F51" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M148 254 Q165 244 180 254 Q195 264 210 252 Q225 240 240 252 Q252 262 258 255" fill="none" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <clipPath id="bowlClip">
+    <path d="M102 212 Q102 283 200 283 Q298 283 298 212 Z"/>
+  </clipPath>
+
+  <!-- Garnish - herb sprig -->
+  <g transform="translate(215, 205) rotate(-25)">
+    <line x1="0" y1="0" x2="0" y2="-28" stroke="#6DB33F" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="-7" cy="-14" rx="7" ry="4" fill="#7BC748" transform="rotate(-30 -7 -14)"/>
+    <ellipse cx="7" cy="-20" rx="7" ry="4" fill="#6DB33F" transform="rotate(30 7 -20)"/>
+    <ellipse cx="-5" cy="-25" rx="6" ry="3.5" fill="#7BC748" transform="rotate(-20 -5 -25)"/>
+  </g>
+
+  <!-- Fork on left -->
+  <g transform="translate(118, 195) rotate(-15)" opacity="0.85">
+    <rect x="-3" y="10" width="6" height="50" rx="3" fill="#C0956A"/>
+    <rect x="-3" y="-30" width="6" height="42" rx="1" fill="#D4A876"/>
+    <rect x="-8" y="-30" width="3" height="22" rx="1.5" fill="#D4A876"/>
+    <rect x="2" y="-30" width="3" height="22" rx="1.5" fill="#D4A876"/>
+    <rect x="-13" y="-30" width="3" height="18" rx="1.5" fill="#D4A876"/>
+    <rect x="7" y="-30" width="3" height="18" rx="1.5" fill="#D4A876"/>
+  </g>
+
+  <!-- Spoon on right -->
+  <g transform="translate(282, 192) rotate(15)" opacity="0.85">
+    <rect x="-3" y="10" width="6" height="50" rx="3" fill="#C0956A"/>
+    <rect x="-3" y="-28" width="6" height="40" rx="1" fill="#D4A876"/>
+    <ellipse cx="0" cy="-38" rx="9" ry="13" fill="#D4A876"/>
+    <ellipse cx="-1" cy="-40" rx="5" ry="8" fill="#ECC99A" opacity="0.5"/>
+  </g>
+
+  <!-- Text: Cookina -->
+  <text
+    x="200"
+    y="332"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="46"
+    font-weight="bold"
+    fill="#2D1B0E"
+    text-anchor="middle"
+    letter-spacing="2"
+  >Cookina</text>
+
+  <!-- Tagline -->
+  <text
+    x="200"
+    y="356"
+    font-family="Georgia, serif"
+    font-size="13"
+    fill="#8B6240"
+    text-anchor="middle"
+    letter-spacing="4"
+    font-style="italic"
+  >discover · cook · enjoy</text>
+
+  <!-- Small decorative divider under title -->
+  <g transform="translate(200, 365)">
+    <line x1="-45" y1="0" x2="-12" y2="0" stroke="#FF6B35" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="0" cy="0" r="3" fill="#FF6B35" opacity="0.8"/>
+    <line x1="12" y1="0" x2="45" y2="0" stroke="#FF6B35" stroke-width="1.5" opacity="0.6"/>
+  </g>
+</svg>
